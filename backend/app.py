@@ -42,7 +42,7 @@ def get_articles():
 @app.route('/get/<id>/', methods= ['GET'])
 def post_details(id):
     article = Articles.query.get(id)
-    return articles_shema.jsonify(article)
+    return article_shema.jsonify(article)
      
 
 
@@ -57,6 +57,30 @@ def add_article():
     db.session.commit()
 
     return article_shema.jsonify(articles)
+
+
+@app.route('/update/<id>/', methods= ['PUT'])
+def update_article(id):
+    article = Articles.query.get(id)
+
+    title= request.json['title']
+    body= request.json['body']
+
+    article.title = title
+    article.body = body
+
+    db.session.commit()
+    return article_shema.jsonify(article)
+
+
+@app.route('/delete/<id>/', methods= ['DELETE'])
+def article_delete(id):
+    article = Articles.query.get(id)
+    db.session.delete(article)
+    db.session.commit()
+    
+    return article_shema.jsonify(article)
+
 
 
 

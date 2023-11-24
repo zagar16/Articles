@@ -25,6 +25,7 @@ function Form(props) {
           </label>
 
           <input
+           id="title"
             type="text"
             className="form-control"
             value={title}
@@ -37,6 +38,7 @@ function Form(props) {
           </label>
 
           <textarea
+            id="body"
             rows="5"
             className="form-control"
             value={body}

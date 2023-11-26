@@ -11,7 +11,7 @@ function App() {
     fetch("http://127.0.0.1:5000/get", {
       methods: "GET",
       headers: {
-        "Content-Type": "applications/json",
+        "Content-Type": "application/json",
       },
     })
       .then((resp) => resp.json())
@@ -25,7 +25,7 @@ function App() {
   };
 
   const updatedData = (article) => {
-    const new_article = articles.map(my_article => {
+    const new_article = articles.map((my_article) => {
       if (my_article.id === article.id) {
         return article;
       } else {
@@ -35,12 +35,33 @@ function App() {
     setArticles(new_article);
   };
 
+  const openForm = () => {
+    setEditedArticle({ title: "", body: "" });
+  };
+
+  const insertArticle = (article)=>{
+    const new_articles = [...articles,article]
+    setArticles(new_articles)
+  }
+
   return (
     <div className="App">
-      <h1>Flask and ReactJS</h1>
+      <div className="row">
+        <div className="col">
+          <h1>Flask and ReactJS</h1>
+        </div>
+
+        <div className="col">
+          <button className="btn btn-success" onClick={openForm}>
+            Insert Article
+          </button>
+        </div>
+      </div>
 
       <ArticleList articles={articles} editArticle={editArticle} />
-      {editedArticle ? <Form article={editedArticle} updatedData={updatedData}/> : null}
+      {editedArticle ? (
+        <Form article={editedArticle} updatedData={updatedData} insertArticle={insertArticle}/>
+      ) : null}
     </div>
   );
 }

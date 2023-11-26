@@ -16,6 +16,12 @@ function Form(props) {
       .catch((error) => console.log(error));
   };
 
+  const insertArticle = () => {
+    APIService.InsertArticle({ title, body })
+      .then((resp) => props.insertArticle(resp))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       {props.article ? (
@@ -25,7 +31,7 @@ function Form(props) {
           </label>
 
           <input
-           id="title"
+            id="title"
             type="text"
             className="form-control"
             value={title}
@@ -45,9 +51,16 @@ function Form(props) {
             placeholder="Please enter description"
             onChange={(e) => setBody(e.target.value)}
           />
-          <button className="btn btn-success mt-3" onClick={updateArticle}>
-            Update
-          </button>
+
+          {props.article.id ? (
+            <button className="btn btn-success mt-3" onClick={updateArticle}>
+              Update
+            </button>
+          ) : (
+            <button className="btn btn-success mt-3" onClick={insertArticle}>
+              Insert
+            </button>
+          )}
         </div>
       ) : null}
     </div>

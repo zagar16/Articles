@@ -39,10 +39,20 @@ function App() {
     setEditedArticle({ title: "", body: "" });
   };
 
-  const insertArticle = (article)=>{
-    const new_articles = [...articles,article]
-    setArticles(new_articles)
-  }
+  const insertArticle = (article) => {
+    const new_articles = [...articles, article];
+    setArticles(new_articles);
+  };
+
+  const deleteArticle = (article) => {
+    const new_articles = articles.filter((my_article) => {
+      if (my_article.id === article.id) {
+        return false;
+      }
+      return true;
+    });
+    setArticles(new_articles);
+  };
 
   return (
     <div className="App">
@@ -58,9 +68,17 @@ function App() {
         </div>
       </div>
 
-      <ArticleList articles={articles} editArticle={editArticle} />
+      <ArticleList
+        articles={articles}
+        editArticle={editArticle}
+        deleteArticle={deleteArticle}
+      />
       {editedArticle ? (
-        <Form article={editedArticle} updatedData={updatedData} insertArticle={insertArticle}/>
+        <Form
+          article={editedArticle}
+          updatedData={updatedData}
+          insertArticle={insertArticle}
+        />
       ) : null}
     </div>
   );

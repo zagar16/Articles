@@ -18,4 +18,13 @@ export default class APIService {
       body: JSON.stringify(body),
     }).then((resp) => resp.json());
   }
+
+  static DeleteArticle(id) {
+    return fetch(`http://127.0.0.1:5000/delete/${id}/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+  }
 }

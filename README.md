@@ -1,4 +1,4 @@
-# Flask and ReactJS CRUD Application
+# Article application - Flask and ReactJS
 
 This is a simple CRUD (Create, Read, Update, Delete) application built using Flask for the backend and ReactJS for the frontend. The application allows users to manage articles, including adding new articles, updating existing ones, and deleting articles.
 

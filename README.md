@@ -33,10 +33,6 @@ This is a simple CRUD (Create, Read, Update, Delete) application built using Fla
 
 ## Frontend - ReactJS
 
-### Prerequisites
-- Node.js
-- React
-
 ### Installation
 1. Navigate to the frontend directory.
 2. Install the required Node modules using the following command:
